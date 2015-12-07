@@ -14,6 +14,13 @@ namespace StatsAggregator.Models
         public int SubscriberId { get; set; }
         public DateTime Datestamp { get; set; }
         public int EntityKey { get; set; }
+        public int CommunityId { get; set; }
+    }
+    public class Journey
+    {
+        public int Id { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
     }
     public class Log_CommunityMember
     {

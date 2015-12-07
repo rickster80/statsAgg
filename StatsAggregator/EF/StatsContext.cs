@@ -11,7 +11,9 @@ namespace StatsAggregator.EF
     {
         public StatsContext() : base("StatsContext"){}
 
-        public DbSet<Log_Universal> Log_Universal;
+        public DbSet<Log_Universal> Log_Universal { get; set; }
         public DbSet<Log_CommunityMember> Log_CommunityMember{ get; set; }
+        public DbSet<CommunityMember> CommunityMember { get; set; }
+        public DbSet<StatsAggregated> StatsAggregated { get; set; }
     }
 }

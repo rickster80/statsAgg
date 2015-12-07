@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StatsAggregator.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,11 @@ namespace StatsAggregator.Controllers
     {
         public ActionResult Index()
         {
+            var agg = new StatsAgg();
+            //agg.Test();
+            //agg.AddTestAggData();
+            //agg.GetDataByYear();
+            agg.GetDataByDay();
             return View();
         }
 

@@ -3,6 +3,8 @@ using StatsAggregator.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -14,12 +16,52 @@ namespace StatsAggregator.Services
         public DateTime ToDate { get; set; }
         public int? CommunityId { get; set; }
     }
-    public class StatsAggregator
+    public class StatsAgg
     {
         private StatsContext _db;
-        public StatsAggregator()
+        public StatsAgg()
         {
             _db = new StatsContext();
+        }
+
+        public void AddTestAggData()
+        {
+            var d1 = DateTime.Now.AddYears(-10);
+            var d2 = DateTime.Now;
+            var r = new Random();
+            for (var i = d1; i <= d2; i = i.AddDays(1))
+            {
+                
+                var randomInt = r.Next(1, 100);
+                var agg = new StatsAggregated()
+                {
+                    CommunityId = 1,
+                    Date = i,
+                    StatValueType = StatValueType.MembersJoinedCommunity,
+                    Value = randomInt
+                };
+                Debug.WriteLine($"adding {i.ToShortDateString()} - {randomInt}");
+                _db.StatsAggregated.Add(agg);
+            }
+            _db.SaveChanges();
+        }
+
+        public void GetDataByYear()
+        {
+            var q = _db.StatsAggregated.GroupBy(s => s.Date.Year, s => s.Value, (key,val) => new { Year = key, Count = val.Sum(v => v) }).ToList();
+
+        }
+        public void GetDataByMonth()
+        {
+            var q = _db.StatsAggregated.GroupBy(s => DbFunctions.CreateDateTime( s.Date.Year, s.Date.Month, 1,0,0,0))
+                .Select((val) => new { Key = val.Key.Value, Count = val.Sum(v => v.Value) }).OrderBy(r => r.Key).ToList();
+
+        }
+        public void GetDataByDay()
+        {
+            var q = _db.StatsAggregated.GroupBy(s => DbFunctions.CreateDateTime(s.Date.Year, s.Date.Month, s.Date.Day, 0, 0, 0))
+                .Select((val) => new { Key = val.Key, Count = val.Sum(v => v.Value) }).OrderBy(r => r.Key).ToList();
+
         }
         public void ProcessStatsFromBeginningOfTime()
         {
@@ -39,7 +81,11 @@ namespace StatsAggregator.Services
 
                 
         }
-
+        public void Test()
+        {
+            var filter = new FilterModel() { CommunityId = 1, FromDate = DateTime.Now.AddMinutes(-10), ToDate = DateTime.Now.AddDays(10) };
+            var res = CommunityMembersAdded(filter);
+        }
         public Dictionary<DateTime,int> CommunityMembersAdded(FilterModel filter)
         {
             var result = _db.Log_Universal

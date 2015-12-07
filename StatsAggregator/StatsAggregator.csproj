@@ -143,13 +143,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512032101422_initialcommit.cs" />
-    <Compile Include="Migrations\201512032101422_initialcommit.Designer.cs">
-      <DependentUpon>201512032101422_initialcommit.cs</DependentUpon>
+    <Compile Include="Migrations\201512062154347_Initial.cs" />
+    <Compile Include="Migrations\201512062154347_Initial.Designer.cs">
+      <DependentUpon>201512062154347_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512072142209_Updates.cs" />
+    <Compile Include="Migrations\201512072142209_Updates.Designer.cs">
+      <DependentUpon>201512072142209_Updates.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Log_Universal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\StatsAggregator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -199,8 +204,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512032101422_initialcommit.resx">
-      <DependentUpon>201512032101422_initialcommit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512062154347_Initial.resx">
+      <DependentUpon>201512062154347_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512072142209_Updates.resx">
+      <DependentUpon>201512072142209_Updates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

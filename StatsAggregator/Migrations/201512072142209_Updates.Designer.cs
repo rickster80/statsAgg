@@ -7,13 +7,13 @@ namespace StatsAggregator.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initialcommit : IMigrationMetadata
+    public sealed partial class Updates : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initialcommit));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Updates));
         
         string IMigrationMetadata.Id
         {
-            get { return "201512032101422_initialcommit"; }
+            get { return "201512072142209_Updates"; }
         }
         
         string IMigrationMetadata.Source
