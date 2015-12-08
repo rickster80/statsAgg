@@ -13,7 +13,10 @@ namespace StatsAggregator.EF
 
         public DbSet<Log_Universal> Log_Universal { get; set; }
         public DbSet<Log_CommunityMember> Log_CommunityMember{ get; set; }
+        public DbSet<Log_Journey> Log_Journey { get; set; }
         public DbSet<CommunityMember> CommunityMember { get; set; }
         public DbSet<StatsAggregated> StatsAggregated { get; set; }
+        public DbSet<Journey> Journey{ get; set; }
+
     }
 }

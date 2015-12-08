@@ -19,8 +19,15 @@ namespace StatsAggregator.Models
     public class Journey
     {
         public int Id { get; set; }
+        public int SubscriberId { get; set; }
         public string From { get; set; }
         public string To { get; set; }
+        public DateTime DateAdded { get; set; }
+    }
+    public class Log_Journey
+    {
+        public int Id { get; set; }
+        public int Jid { get; set; }
     }
     public class Log_CommunityMember
     {
@@ -36,7 +43,8 @@ namespace StatsAggregator.Models
     }
     public enum EntityType
     {
-        CommunityMember
+        CommunityMember,
+        Journey
     }
     public enum ActionType
     {

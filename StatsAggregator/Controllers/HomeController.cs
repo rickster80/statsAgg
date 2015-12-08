@@ -15,7 +15,8 @@ namespace StatsAggregator.Controllers
             //agg.Test();
             //agg.AddTestAggData();
             //agg.GetDataByYear();
-            agg.GetDataByDay();
+            //agg.GetDataByDay();
+            agg.MembersAddedJourney(new FilterModel());
             return View();
         }
 

@@ -97,5 +97,26 @@ namespace StatsAggregator.Services
                 .Select(g => new { Date = g.Key, Count = g.Select(v => v.u.SubscriberId).Distinct().Count() }).ToDictionary(r => r.Date, r => r.Count);
             return result;
         }
-    }
+        public void MembersAddedJourney(FilterModel filter)
+        {
+            var result = _db.Log_Universal.Where(u => u.EntityType == EntityType.CommunityMember)
+                .Join(_db.Log_CommunityMember, u => u.EntityKey, c => c.Id, (u, c) => new { u, c })
+                .GroupBy(v => v.u.SubscriberId).AsEnumerable()
+                .Select(g => new { Group = g, Count = g.Count() })
+                .SelectMany(groupWithCount =>
+                    groupWithCount.Group.Select(b => b)
+                    .Zip(
+                        Enumerable.Range(1, groupWithCount.Count).Reverse(),
+                        (j, i) => new { j.u.SubscriberId, j.u.ActionType, i }))
+                .Where(r => r.i == 1 && r.ActionType == ActionType.Created)
+                .Join(_db.Log_Universal
+                    .Where(u => u.EntityType == EntityType.Journey && u.ActionType == ActionType.Created),
+                        c => c.SubscriberId, u => u.SubscriberId, (c, u) => new { c, u }
+                    )
+                .GroupBy(g => g.u.Datestamp.Date)
+                .Select(g => new { Date = g.Key, Count = g.Select(v => v.u.SubscriberId).Distinct().Count() })
+                .ToDictionary(r => r.Date, r => r.Count);
+                
+        }
+    }   
 }

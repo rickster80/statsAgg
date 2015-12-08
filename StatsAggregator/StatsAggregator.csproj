@@ -151,6 +151,14 @@
     <Compile Include="Migrations\201512072142209_Updates.Designer.cs">
       <DependentUpon>201512072142209_Updates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512081939481_Journeys.cs" />
+    <Compile Include="Migrations\201512081939481_Journeys.Designer.cs">
+      <DependentUpon>201512081939481_Journeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512081948596_JourneysSub.cs" />
+    <Compile Include="Migrations\201512081948596_JourneysSub.Designer.cs">
+      <DependentUpon>201512081948596_JourneysSub.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Log_Universal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,6 +217,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512072142209_Updates.resx">
       <DependentUpon>201512072142209_Updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512081939481_Journeys.resx">
+      <DependentUpon>201512081939481_Journeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512081948596_JourneysSub.resx">
+      <DependentUpon>201512081948596_JourneysSub.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
